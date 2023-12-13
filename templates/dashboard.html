@@ -1,0 +1,25 @@
+{% extends  'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+    <h1>Currency Exchange Rate Trends</h1>
+    <div>
+        {{ plot_html | safe }}
+    </div>
+
+    <h1>BOX Plot</h1>
+    <div>
+        {{ plot_html_box | safe }}
+    </div>
+
+    <h1>Scatter Plot</h1>
+    <div>
+        {{ plot_scatter| safe }}
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends  'base.html' %}
+
+{% block title %}
+Compare Chart
+{% endblock %}
+
+{% block content %}
+
+<h1>Currency Comparison Chart</h1>
+<div id="chart_div">
+    {{ chart_div|safe }}
+</div>
+        
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends  'base.html' %}
+
+{% block title %}
+Currency Exchange Table
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="">Currency Rates</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">From Currency</th>
+            <th scope="col">To Currency</th>
+            <th scope="col">Exchange Rate</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in currency_data %}
+        <tr>
+            <td scope="col">{{ data.Date }}</td>
+            <td>{{ data.FromCurrency }}</td>
+            <td>{{ data.ToCurrency }}</td>
+            <td>{{ data.ExchangeRate }}</td>
+        </tr>
+        {% endfor %}
+        <tbody>
+    </table>
+{% endblock %}
