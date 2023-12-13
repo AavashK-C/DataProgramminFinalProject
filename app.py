@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 from pymongo import MongoClient
 import pandas as pd
 import json
@@ -7,11 +7,14 @@ import plotly.express as px
 import schedule
 import subprocess
 import time
-
+from datetime import datetime
+from flask import Flask, render_template, request
+from forex_python.converter import CurrencyRates
 
 
 app = Flask(__name__)
 
+c = CurrencyRates()
 def run_subprocess():
     
     subprocess.run(['python', 'Dependency/collect_data.py'])
@@ -92,6 +95,23 @@ def compare_currency_rates():
     chart_div = fig.to_html(full_html=False)
 
     return render_template('compare_chart.html', chart_div=chart_div)
+
+@app.route('/converter')
+def converter():
+    return render_template('calculate.html')
+
+@app.route('/convert', methods=['POST'])
+def convert():
+    from_currency = request.form['from_currency']
+    to_currency = request.form['to_currency']
+    amount = float(request.form['amount'])
+
+    # Perform currency conversion using forex_python
+    converted_amount = c.convert(from_currency, to_currency, amount)
+
+    result = f"{amount} {from_currency} is equal to {round(converted_amount)} of {to_currency}"
+    
+    return render_template('popup.html',result=result)
 
 
 import threading
