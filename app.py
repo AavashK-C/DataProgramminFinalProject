@@ -109,7 +109,7 @@ def convert():
     # Perform currency conversion using forex_python
     converted_amount = c.convert(from_currency, to_currency, amount)
 
-    result = f"{amount} {from_currency} is equal to {round(converted_amount)} of {to_currency}"
+    result = f"{amount} {from_currency} is equal to {round(converted_amount,4)} of {to_currency}"
     
     return render_template('popup.html',result=result)
 
